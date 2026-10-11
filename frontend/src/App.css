@@ -1,0 +1,427 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f6f8;
+}
+
+.app {
+    min-height: 100vh;
+}
+
+/* Header */
+
+.header {
+    height: 70px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    gap: 30px;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #e63946;
+}
+
+.search-box {
+    display: flex;
+    flex: 1;
+    max-width: 600px;
+    margin: auto;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px 0 0 6px;
+    font-size: 15px;
+    outline: none;
+}
+
+.search-box button {
+    padding: 12px 20px;
+    border: none;
+    background-color: #e63946;
+    color: white;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+}
+
+.login-btn {
+    padding: 10px 20px;
+    border: 1px solid #e63946;
+    background-color: white;
+    color: #e63946;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+
+/* Category Navigation */
+
+.category-nav {
+    background-color: white;
+    display: flex;
+    gap: 25px;
+    padding: 15px 40px;
+    border-bottom: 1px solid #ddd;
+    overflow-x: auto;
+}
+
+.category-nav button {
+    border: none;
+    background: none;
+    font-size: 15px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.category-nav button.active-category {
+    color: #e63946;
+    font-weight: bold;
+    border-bottom: 2px solid #e63946;
+    padding-bottom: 5px;
+}
+
+.category-nav button:hover {
+    color: #e63946;
+}
+
+
+/* Main Content */
+
+.main-content {
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+.news-section {
+    margin-bottom: 45px;
+}
+
+.news-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+
+/* News Cards */
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.news-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e1e1e1;
+    transition: transform 0.2s;
+}
+
+.news-card:hover {
+    transform: translateY(-4px);
+}
+
+.news-image {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    display: block;
+}
+
+.news-content {
+    padding: 15px;
+}
+
+.news-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #777;
+}
+
+.news-info span:first-child {
+    color: #e63946;
+    font-weight: bold;
+}
+
+.news-card h3 {
+    font-size: 18px;
+    margin: 8px 0;
+    line-height: 1.4;
+}
+
+.news-card p {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 15px;
+    line-height: 1.5;
+}
+
+.news-source {
+    font-size: 13px;
+    color: #555;
+    font-weight: bold;
+}
+
+
+.news-detail {
+    max-width: 900px;
+    margin: auto;
+}
+
+.back-btn {
+    border: none;
+    background: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.back-btn:hover {
+    color: #e63946;
+}
+
+.news-detail-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #e1e1e1;
+}
+
+.news-detail-info {
+    display: flex;
+    justify-content: space-between;
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.news-detail-info span:first-child {
+    color: #e63946;
+    font-weight: bold;
+}
+
+.news-detail-card h1 {
+    font-size: 32px;
+    line-height: 1.3;
+    margin: 10px 0;
+}
+
+.news-detail-source {
+    color: #555;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.news-detail-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.news-detail-description {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #444;
+    margin-top: 25px;
+}
+
+
+/* Responsive */
+
+@media (max-width: 800px) {
+
+    .header {
+        padding: 0 15px;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .search-box {
+        max-width: none;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media (max-width: 550px) {
+
+    .header {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 15px;
+    }
+
+    .search-box {
+        order: 3;
+        flex-basis: 100%;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* Login Modal */
+
+.login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.login-modal {
+    width: 400px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.login-modal h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.login-subtitle {
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.login-modal input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.login-submit {
+    width: 100%;
+    padding: 12px;
+    background: #e63946;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.close-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+
+    border: none;
+    background: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.signup-text {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.signup-text span {
+    color: #e63946;
+    cursor: pointer;
+}
+
+.maybe-later {
+    display: block;
+    margin: 15px auto 0;
+    border: none;
+    background: none;
+    color: #777;
+    cursor: pointer;
+}
+
+
+/* Interest Selection */
+
+.interest-modal {
+    width: 500px;
+}
+
+.interest-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 25px 0;
+}
+
+.interest-option {
+    padding: 10px 18px;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.interest-option:hover {
+    border-color: #e63946;
+    color: #e63946;
+}
+
+.welcome-heading {
+    max-width: 1200px;
+    margin: 25px auto 10px;
+    font-size: 28px;
+}
+
+
+
+
+.forgot-password {
+    display: block;
+    margin: 12px auto 0;
+    border: none;
+    background: none;
+    color: #e63946;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
