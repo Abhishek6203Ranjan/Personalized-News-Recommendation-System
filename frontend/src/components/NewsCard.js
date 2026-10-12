@@ -1,33 +1,44 @@
 function NewsCard({ news, onClick }) {
+    const imageUrl = news.image || news.urlToImage;
+
     return (
         <div
             className="news-card"
             onClick={() => onClick(news)}
         >
-
-            <img
-                className="news-image"
-                src={news.image}
-                alt={news.title}
-            />
+            {imageUrl ? (
+                <img
+                    className="news-image"
+                    src={imageUrl}
+                    alt={news.title || "News"}
+                    onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                    }}
+                />
+            ) : (
+                <div className="news-image-placeholder">
+                    Image not available
+                </div>
+            )}
 
             <div className="news-content">
-
                 <div className="news-info">
-                    <span>{news.category}</span>
-                    <span>{news.date}</span>
+                    <span>{news.category || "News"}</span>
+                    <span>{news.date || news.publishedAt || ""}</span>
                 </div>
 
-                <h3>{news.title}</h3>
+                <h3>{news.title || "Untitled News"}</h3>
 
-                <p>{news.description}</p>
+                <p>
+                    {news.description || "No description available."}
+                </p>
 
                 <div className="news-source">
-                    {news.source}
+                    {typeof news.source === "object"
+                        ? news.source?.name || "Newsly"
+                        : news.source || "Newsly"}
                 </div>
-
             </div>
-
         </div>
     );
 }

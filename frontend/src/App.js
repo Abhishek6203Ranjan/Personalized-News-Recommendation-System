@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import NewsCard from "./components/NewsCard";
 import LoginModal from "./components/LoginModal";
@@ -18,6 +18,51 @@ function App() {
        return savedUser ? JSON.parse(savedUser) : null;
   });
   const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  
+useEffect(() => {
+    const fetchNews = async () => {
+        try {
+            setLoading(true);
+            setError("");
+
+            const response = await fetch(
+                "http://localhost:5000/api/news"
+            );
+
+            if (!response.ok) {
+                throw new Error("News fetch nahi ho payi");
+            }
+
+            const data = await response.json();
+
+            const formattedNews = data.map((article) => ({
+                title: article.title || "No title available",
+                description:
+                    article.description || "No description available",
+                image: article.urlToImage || "",
+                category: "Latest",
+                source: article.source?.name || "Unknown source",
+                date: article.publishedAt
+                    ? new Date(article.publishedAt).toLocaleDateString()
+                    : "Recently",
+                url: article.url
+            }));
+
+            setNews(formattedNews);
+        } catch (err) {
+            setError(err.message || "Something went wrong");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    fetchNews();
+}, []);
+
 
 
   
@@ -503,17 +548,25 @@ const allNews = [
 
                 <h2>Latest News</h2>
 
-                <div className="news-grid">
+                
+<div className="news-grid">
+    {loading ? (
+        <p>Loading news...</p>
+    ) : error ? (
+        <p>{error}</p>
+    ) : news.length > 0 ? (
+        news.map((article, index) => (
+            <NewsCard
+                key={article.url || index}
+                news={article}
+                onClick={setSelectedNews}
+            />
+        ))
+    ) : (
+        <p>No news available.</p>
+    )}
+</div>
 
-                    {latestNews.map((news, index) => (
-                        <NewsCard
-                            key={index}
-                            news={news}
-                            onClick={setSelectedNews}
-                        />
-                    ))}
-
-                </div>
 
             </section>
 
